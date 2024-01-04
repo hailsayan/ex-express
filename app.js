@@ -8,7 +8,7 @@ const port = 3000;
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-app.use(bodyParser.urlencoded(extended: true));
+app.use(bodyParser.urlencoded({extended: true}));
 
 const path = require('path');
 app.use('/static', express.static(path.join(__dirname, 'public')));

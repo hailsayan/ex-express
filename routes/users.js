@@ -7,7 +7,7 @@ router.get('/register',(req,res)=>{
 });
 
 router.post('/register',(req, res)=>{
-    console.log(req,body);
+    console.log(req.body);
     res.send(`your register was successfully`);
 });
 
