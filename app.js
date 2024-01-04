@@ -4,30 +4,11 @@ const usersRouter = require('./routes/users');
 const app = express();
 const port = 3000;
 
-// app.use('/', homeRouter);
-// app.use('/users', usersRouter);
+app.set('view engine', 'pug');
+app.set('views', './views')
 
-const myLogger = function (req, res, next){
-    req.activeTime = (new Date()).toLocaleTimeString()
-    next()
-}
-
-app.use(myLogger);
-
-app.get('/', (req, res)=>{
-    console.log('home sweet home')
-    res.send(`home page - last seen recently: ${req.activeTime}`)
-})
-
-app.get('/about', 
-(req,res, next)=>{
-    console.log('middleware');
-    next();
-},
-(req, res)=>{
-    console.log('about page')
-    res.send(`about page - last seen recently: ${req.activeTime}`)
-})
+app.use('/', homeRouter);
+app.use('/users', usersRouter);
 
 app.listen(port, ()=>{
     console.log(`app is running on ${port}`);
