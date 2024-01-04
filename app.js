@@ -19,7 +19,12 @@ app.get('/', (req, res)=>{
     res.send(`home page - last seen recently: ${req.activeTime}`)
 })
 
-app.get('/about', (req, res)=>{
+app.get('/about', 
+(req,res, next)=>{
+    console.log('middleware');
+    next();
+},
+(req, res)=>{
     console.log('about page')
     res.send(`about page - last seen recently: ${req.activeTime}`)
 })
